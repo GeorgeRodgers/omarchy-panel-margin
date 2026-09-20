@@ -60,29 +60,35 @@ hot-reloads; save it, no shell restart needed.
 
 ## Install
 
-1. Copy the plugin into your user plugin directory. The **folder name must match
-   the manifest `id`** (`panel-margin`), or hot-reload won't find it:
+```bash
+omarchy plugin add https://github.com/GeorgeRodgers/omarchy-panel-margin --enable
+```
 
-   ```bash
-   cp -r . ~/.config/omarchy/plugins/panel-margin
-   ```
+This clones the plugin to `~/.config/omarchy/plugins/panel-margin` (the folder
+name always matches the manifest `id`, which is required for hot-reload) and
+registers it in `~/.config/omarchy/shell.json`. The shell picks it up
+immediately — no restart needed.
 
-2. Enable it by adding an entry to the `plugins` array in
-   `~/.config/omarchy/shell.json`:
+Update it later with:
 
-   ```json
-   { "id": "panel-margin" }
-   ```
+```bash
+omarchy plugin update panel-margin
+```
 
-3. Restart the shell:
+<details>
+<summary>Manual install (without git management)</summary>
 
-   ```bash
-   omarchy restart shell
-   ```
+1. Copy the plugin into `~/.config/omarchy/plugins/panel-margin` — the **folder
+   name must match the manifest `id`** (`panel-margin`), or hot-reload won't
+   find it.
+2. Add `{ "id": "panel-margin" }` to the `plugins` array in
+   `~/.config/omarchy/shell.json`.
+3. `omarchy restart shell`.
+
+</details>
 
 Saving files under `~/.config/omarchy/plugins/panel-margin/` hot-reloads them
-while the shell is running; use step 3 only the first time or after editing
-`shell.json`.
+while the shell is running.
 
 ### Configure the margin
 
@@ -98,18 +104,13 @@ well with a thin bar.
 
 ## Remove
 
-1. Delete the plugin folder:
+```bash
+omarchy plugin remove panel-margin
+```
 
-   ```bash
-   rm -rf ~/.config/omarchy/plugins/panel-margin
-   ```
-
-2. Remove the `{ "id": "panel-margin" }` entry from `plugins` in
-   `~/.config/omarchy/shell.json`.
-
-3. `omarchy restart shell`.
-
-The shell falls back to deriving the margin from `gaps_out` again.
+This deletes the plugin folder and its `shell.json` entry (leaving a hidden
+timestamped backup under `~/.config/omarchy/plugins/`), and the shell falls
+back to deriving the margin from `gaps_out` again.
 
 ## Notes
 
