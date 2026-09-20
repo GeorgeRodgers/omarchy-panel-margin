@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "panel-margin",
+  "name": "Panel margin",
+  "author": "George Rodgers",
+  "license": "MIT",
+  "version": "1.0.0",
+  "description": "Gives Omarchy shell panels, popups and notifications a larger, fixed margin from the screen and bar edges so they stop visually merging with the window behind them.",
+  "kinds": [
+    "panel"
+  ],
+  "entryPoints": {
+    "panel": "Panel.qml"
+  },
+  "keepLoaded": true
+}
